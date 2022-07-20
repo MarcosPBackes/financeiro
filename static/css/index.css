@@ -1,0 +1,208 @@
+:root {
+    --cor0: #0A000A;
+    --cor1: #510057;
+    --cor2: #310F33;
+    --cor3: #542D57;
+    --cor4: #FFC200;
+    --cor5: #9800a3d1;
+    --cor6: #EBEBEB;
+    }
+
+body {
+    color: var(--cor3);
+    
+}
+
+.container-fluid {
+    padding:0;
+    background-color: var(--cor1);
+    height: 100vh;
+}
+
+/* Navbar */
+
+.navbar {
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+    background-color: var(--cor0);
+    color: var(--cor0);
+}
+
+.navbar-nav {
+    margin: auto;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    margin-left: 20px;
+    color: var(--cor4);
+}
+
+a.nav-link{
+    color:var(--cor4);
+}
+
+/* botao de adicionar */
+
+.add-div {
+    background-color: var(--cor5);
+    cursor: pointer;
+    display: inline-block;
+    color: var(--cor6);
+    padding: 8px;
+    border-radius: 5px;
+    margin-right: 25px;
+}
+
+.add-div:hover {
+    background-color: var(--cor2)
+}
+
+.fas.fa-plus {
+    color: var(--cor6);
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+/* search */
+
+
+.search-div {
+    padding: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.fas.fa-search {
+    padding-left: 10px;
+    margin-top: 10px;
+    color: var(--cor6)
+}
+/* lista de ordens */
+
+.ordem-div
+{
+    padding: 0;
+}
+
+.ordem-div h1{
+    color: var(--cor6);
+
+}
+
+.ordem-div p{
+    color: var(--cor6)
+}
+
+.ordem-list {
+    padding-left: 0;
+}
+
+.lista-titulo {
+    color: var(--cor6);
+    text-decoration: none;
+    
+}
+
+.lista-titulo:hover {
+    color: var(--cor5)
+}
+
+.ordem-item {
+    color: var(--cor6);
+    cursor: pointer;    
+    list-style: none;
+    font-size: 20px;
+    height: 50px;
+    padding-top: 10px;
+    border-bottom: 1px dashed var(--cor4);
+    
+}
+
+
+.fas.fa-search {
+    cursor: pointer;
+}
+
+.fas.fa-trash, .fas.fa-edit {
+    cursor: pointer;
+    margin: 5px;
+    font-size: 20px;
+    float: right;
+}
+
+.fas.fa-trash {
+    color: #db1e47;
+}
+
+.fas.fa-edit {
+    color: #13c43f;
+}
+
+/* Adicionar ordens */
+
+.form-add p {
+    display: grid;
+    color: var(--cor5);
+}
+
+.form-div h1 {
+    color: var(--cor6);
+}
+
+/* Messages */
+
+ul.messages {
+    padding: 0;
+}
+
+ul.messages li {
+    list-style: none;
+}
+/* paginaçao */
+
+.pagination {
+    margin-bottom: 20px;
+}
+
+.step-links {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-links .current {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: var(--cor6);
+}
+
+
+/* footer*/
+
+div.container4 {
+    height: 10em;
+    position: relative;
+    background-color: var(--cor0)
+}
+    
+div.container4 p {
+    margin: 0;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+
+
+footer p{    
+    color: var(--cor3);      
+}
+
+/* login */
+
+.auth-card {
+    margin-bottom: 30px;
+}

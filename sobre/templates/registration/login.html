@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="card auth-card">
+        <div class="card-body">
+            <h4 class="card-title text-center">Entrar no site</h4>
+
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+
+                {{ form }}
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
