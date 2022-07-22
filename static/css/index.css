@@ -81,21 +81,21 @@ a.nav-link{
 }
 /* lista de ordens */
 
-.ordem-div
+.variavel-div
 {
     padding: 0;
 }
 
-.ordem-div h1{
+.variavel-div h1{
     color: var(--cor6);
 
 }
 
-.ordem-div p{
+.variavel-div p{
     color: var(--cor6)
 }
 
-.ordem-list {
+.variavel-list {
     padding-left: 0;
 }
 

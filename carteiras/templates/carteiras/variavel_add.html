@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}Ordens{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 form-div">
+    <h1>Adicione uma nova ação</h1>
+    <form class="form-add" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Criar ação">
+    </form>
+</div>
+
+{% endblock %}

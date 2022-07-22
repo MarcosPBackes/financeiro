@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% block title %}Ordens{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 variavel-div">
+    <h1> Lista de Investimentos</h1>
+    <a class="add-variavel" href="variavel_add/">
+        <div class="col-2 add-div">
+            <i class="fas fa-plus"></i>Adicionar Ordem
+        </div>
+    </a>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="search-div">
+        <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome da OS para buscar">
+        <spam><i class="fas fa-search"></i></spam>
+    </div>
+        
+    
+    
+    <ul class="variavel-list">
+        {% for variavel in carteiras %}
+        <li class="variavel-item">
+            <spam><a class="lista-titulo" href="/carteiras/{{variavel.id}}">{{ordem.titulo}}</a></spam>
+            <a href="/carteiras/variavel_delete/{{variavel.id}}" class="delete-btn" onclick="return confirm('Realmente deseja excluir?')"><spam><i class="fas fa-trash"></i></spam></a>
+            <a href="/carteiras/variavel_edit/{{variavel.id}}"><spam><i class="fas fa-edit"></i></spam></a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <spam class="step-links">
+            {% if carteiras.has_previous %}
+                <a href="?page={{ carteiras.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+            {% endif %}
+            
+            <spam class="current">
+                {{ carteiras.number }} de {{ carteiras.paginator.num_pages }}        
+            </spam>
+
+            {% if carteiras.has_next %}
+            <a href="?page={{ carteiras.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+            {% endif %}
+        </spam>
+    </div>
+</div>
+
+{% endblock %}
+
