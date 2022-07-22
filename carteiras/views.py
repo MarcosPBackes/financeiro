@@ -3,8 +3,9 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import VariavelForm
+from .forms import VariavelForm, AcaoForm
 from .models import Variavel
+
 def carteiras(request):
     return render(request, 'carteiras/carteira.html')
 
@@ -27,17 +28,17 @@ def variavel_view(request, id):
 
 def variavel_add(request):
     if request.method == 'POST':
-        form = VariavelForm(request.POST)
+        form = AcaoForm(request.POST)        
         
         if form.is_valid():
             variavel = form.save(commit=False)
-            variavel.user = request.user
+            
             variavel.save()
             return redirect('variavel_list')
-        else:
-            form = VariavelForm()
-            return render(request, 'carteiras/variavel_add.htlm',
-                          {'form': form})
+    else:
+        form = AcaoForm()
+        return render(request, 'carteiras/variavel_add.html',
+                        {'form': form})
 
 def variavel_edit(request, id):
     variavel = get_object_or_404(Variavel, pk=id)

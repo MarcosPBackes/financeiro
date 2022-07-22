@@ -27,7 +27,7 @@
     <ul class="variavel-list">
         {% for variavel in carteiras %}
         <li class="variavel-item">
-            <spam><a class="lista-titulo" href="/carteiras/{{variavel.id}}">{{ordem.titulo}}</a></spam>
+            <spam><a class="lista-titulo" href="/carteiras/{{variavel.id}}">{{variavel.titulo}}</a></spam>
             <a href="/carteiras/variavel_delete/{{variavel.id}}" class="delete-btn" onclick="return confirm('Realmente deseja excluir?')"><spam><i class="fas fa-trash"></i></spam></a>
             <a href="/carteiras/variavel_edit/{{variavel.id}}"><spam><i class="fas fa-edit"></i></spam></a>
         </li>

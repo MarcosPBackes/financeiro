@@ -8,7 +8,6 @@ class Acao(models.Model):
     data_compra = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user =  models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
         
     def __str__(self):
         return self.nome
@@ -23,3 +22,4 @@ class Variavel(models.Model):
     acao = models.ForeignKey(Acao, on_delete=models.PROTECT)
     preco_medio = models.DecimalField(max_digits=11, decimal_places=2)
     quantidade = models.IntegerField()
+    user =  models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
