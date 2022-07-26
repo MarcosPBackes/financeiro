@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block title %} Teste {% endblock %}
+
+{% block content %}
+<div class="search-div">
+    <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome da OS para buscar">
+    <spam><i class="fas fa-search"></i></spam>
+</div>
+<ul class="variavel-list">
+    {% for acao in carteiras %}
+    <li class="variavel-item">
+        <spam><a class="lista-titulo" href="/carteiras/acao_view{{acao}}">{{acao.Código}}</a></spam>
+        <a href="/carteiras/variavel_delete/{{variavel.id}}" class="delete-btn" onclick="return confirm('Realmente deseja excluir?')"><spam><i class="fas fa-trash"></i></spam></a>
+        <a href="/carteiras/variavel_edit/{{variavel.id}}"><spam><i class="fas fa-edit"></i></spam></a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

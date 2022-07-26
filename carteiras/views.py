@@ -6,6 +6,14 @@ from django.contrib import messages
 from .forms import VariavelForm, AcaoForm
 from .models import Variavel
 
+import pandas as pd
+
+def busca_acao(request):
+    url = 'http://bvmf.bmfbovespa.com.br/indices/ResumoCarteiraTeorica.aspx?Indice={}&idioma=pt-br'.format(request.upper())
+    acao = pd.read_html(url, decimal=',', thousands='.', index_col='Código')[0][:-1]
+    return render(request, 'acao_view.html', {'acao': acao})
+
+
 def carteiras(request):
     return render(request, 'carteiras/carteira.html')
 
@@ -28,7 +36,7 @@ def variavel_view(request, id):
 
 def variavel_add(request):
     if request.method == 'POST':
-        form = AcaoForm(request.POST)        
+        form = VariavelForm(request.POST)        
         
         if form.is_valid():
             variavel = form.save(commit=False)
@@ -36,7 +44,7 @@ def variavel_add(request):
             variavel.save()
             return redirect('variavel_list')
     else:
-        form = AcaoForm()
+        form = VariavelForm()
         return render(request, 'carteiras/variavel_add.html',
                         {'form': form})
 
