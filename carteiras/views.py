@@ -3,15 +3,51 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import VariavelForm, AcaoForm
-from .models import Variavel
+import time
 
+import json
 import pandas as pd
+from pandas import json_normalize
 
-def busca_acao(request):
-    url = 'http://bvmf.bmfbovespa.com.br/indices/ResumoCarteiraTeorica.aspx?Indice={}&idioma=pt-br'.format(request.upper())
-    acao = pd.read_html(url, decimal=',', thousands='.', index_col='Código')[0][:-1]
-    return render(request, 'acao_view.html', {'acao': acao})
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
+
+
+
+
+def acao_busca():
+
+    url = "https://br.tradingview.com/screener/"
+    browser = webdriver.Chrome()
+    browser.get(url)
+    time.sleep(3)
+    url_pego = browser.find_element(By.CLASS_NAME, "tv-screener__content-pane")
+    html = url_pego.get_attribute('outerHTML')
+    soup =BeautifulSoup(html, 'html.parser')
+
+    table = soup.find(name='table')
+    df = pd.read_html(str(table))[0].head(50)
+    dfx = df[["CotaçãoSem resultados", "Preço", "Var %", "Var",
+              "Technical Rating", "Vol", "Volume*Preço", "Valor de Mercado",
+              "P/L", "EPS (12M)", "FUNCIONÁRIOS", "Setor"]]
+    dfx.columns = ["Nome", "Fechamento", "Variação %", "Variação em BRl",
+                   "Indice Tecnico", "Volume", "Volume vs Preço",
+                   "Valor de Mercado", "Relação preço/lucro",
+                   "EPS 12M", "Funcionários", "Setor"]
+
+    #print(dfx[['Nome', 'Setor', 'Fechamento']])
+###Tudo ok
+    t_p = dfx[['Nome', 'Fechamento', 'Variação %', 'Variação em BRl', 'Volume', 'Valor de Mercado', 'Setor']]
+    tabela_pessoal = {}
+    tabela_pessoal['personalizado'] = t_p.to_dict('records')
+    js = json.dumps(tabela_pessoal)
+    teste = pd.DataFrame(tabela_pessoal['personalizado'])
+    print(teste)
+
+
 
 
 def carteiras(request):
@@ -69,3 +105,4 @@ def variavel_delete(request, id):
     
     return redirect('variavel_list')
 
+acao_busca()
