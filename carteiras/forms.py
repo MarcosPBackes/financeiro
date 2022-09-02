@@ -10,7 +10,7 @@ class VariavelForm(forms.ModelForm):
     
         
 class AcaoForm(forms.ModelForm):
-       
-    class Meta:
-        model = Acao
-        fields = ('nome', 'valor', 'codigo', 'data_compra')
+
+    pass
+
+

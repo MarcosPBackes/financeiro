@@ -10,6 +10,8 @@
 
 body {
     color: var(--cor3);
+    max-width: none;
+
     
 }
 

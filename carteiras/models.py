@@ -15,3 +15,4 @@ class Variavel(models.Model):
     preco_medio = models.DecimalField(max_digits=11, decimal_places=2)
     quantidade = models.IntegerField()
     user =  models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+
