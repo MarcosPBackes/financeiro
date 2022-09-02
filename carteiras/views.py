@@ -50,8 +50,11 @@ def acao_busca(request):
                "indice_tecnico", "volume", "volume_vs_preco",
                "valor_de_mercado", "relacao_preco_lucro",
                "eps_12m", "funcionarios", "setor"]]
-    obj = t_p.to_html()
-    return HttpResponse(obj)
+    jotao = t_p.reset_index().to_json(orient ='records')
+    data = []
+    data = json.loads(jotao)
+    context = {'acao': data}
+    return render(request, 'carteiras/acao_list.html', context)
 #acao_busca()
 def acao_list(request):
     url = acao_busca()

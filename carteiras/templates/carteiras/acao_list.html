@@ -3,32 +3,48 @@
 {% block title %}Ordens{% endblock %}
 
 {% block content %}
-    <table id="test_table" class="display table table-striped table-bordered" border="1" cellspacing="0" width="100%">
+    <<div class="container">
+  <h2 class="text-center"><u>Tabela de Investimentos</u></h2><br>
+  <table class="table table-dark table-striped">
     <thead>
-        <tr>
-
-            <th>Item</th>
-
-        </tr>
+      <tr>
+        <th>Nome</th>
+        <th>Fechamento</th>
+        <th>Variação %</th>
+        <th>Variação em BRl</th>
+        <th>Inddice Técnico</th>
+        <th>Volume</th>
+        <th>Volume vs Preço</th>
+        <th>Valor de Mercado</th>
+        <th>Relação Preço vs Lucro</th>
+        <th>EPS 12M</th>
+        <th>Funcionários</th>
+        <th>Setor</th>
+      </tr>
     </thead>
     <tbody>
-            {% for r in acao %}
-            <tr>
-
-                <td>{{ r.nome }}</td>
-
-            </tr>
-            {% endfor %}
+    <!-- jinja2 Technique -->
+    {% if acao %}
+    {% for a in acao %}
+      <tr>
+        <td>{{a.nome}}</td>
+        <td>{{a.fechamento}}</td>
+        <td>{{a.variacao_p}}</td>
+        <td>{{a.variacao_em_brl}}</td>
+        <td>{{a.indice_tecnico}}</td>
+        <td>{{a.volume}}</td>
+        <td>{{a.volume_vs_preco}}</td>
+        <td>{{a.valor_de_mercado}}</td>
+        <td>{{a.relacao_preco_lucro}}</td>
+        <td>{{a.eps_12m}}</td>
+        <td>{{a.funcionarios}}</td>
+        <td>{{a.setor}}</td>
+      </tr>
+    {% endfor %}
+    {% endif %}
     </tbody>
-            <tfoot>
-            <tr>
-
-                <th>Item</th>
-
-            </tr>
-            </tfoot>
-    </table>
-aksjdkoajs
+  </table>
+</div>
 
 {% endblock %}
 
