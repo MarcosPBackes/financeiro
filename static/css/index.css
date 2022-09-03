@@ -11,6 +11,7 @@
 body {
     color: var(--cor3);
     max-width: none;
+    padding: 0px;
 
     
 }
@@ -18,7 +19,7 @@ body {
 .container-fluid {
     padding:0;
     background-color: var(--cor1);
-    height: 100vh;
+
 }
 
 /* Navbar */
@@ -207,4 +208,14 @@ footer p{
 
 .auth-card {
     margin-bottom: 30px;
+}
+
+/* table */
+
+.table  {
+    margin-bottom: 0px;
+}
+
+table {
+    margin_bottom: 0px;
 }

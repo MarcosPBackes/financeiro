@@ -1,28 +1,15 @@
-import ast
-
-from django.contrib.sites import requests
-from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 import time
-
 import json
 import pandas as pd
-from pandas import json_normalize
-
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-
-
-
-
-
-
 def acao_busca(request):
     url = "https://br.tradingview.com/screener/"
     option = Options()
@@ -33,9 +20,8 @@ def acao_busca(request):
     url_pego = browser.find_element(By.CLASS_NAME, "tv-screener__content-pane")
     html = url_pego.get_attribute('outerHTML')
     soup = BeautifulSoup(html, 'html.parser')
-
     table = soup.find(name='table')
-    df = pd.read_html(str(table))[0].head(999)
+    df = pd.read_html(str(table))[0].head(15)
     dfx = df[["CotaçãoSem resultados", "Preço", "Var %", "Var",
               "Technical Rating", "Vol", "Volume*Preço", "Valor de Mercado",
               "P/L", "EPS (12M)", "FUNCIONÁRIOS", "Setor"]]
@@ -43,36 +29,15 @@ def acao_busca(request):
                    "indice_tecnico", "volume", "volume_vs_preco",
                    "valor_de_mercado", "relacao_preco_lucro",
                    "eps_12m", "funcionarios", "setor"]
-
-    # print(dfx[['Nome', 'Setor', 'Fechamento']])
-    ###Tudo ok
     t_p = dfx[["nome", "fechamento", "variacao_p", "variacao_em_brl",
                "indice_tecnico", "volume", "volume_vs_preco",
                "valor_de_mercado", "relacao_preco_lucro",
                "eps_12m", "funcionarios", "setor"]]
-    jotao = t_p.reset_index().to_json(orient ='records')
+    jotao = t_p.reset_index().to_json(orient='records')
     data = []
     data = json.loads(jotao)
     context = {'acao': data}
     return render(request, 'carteiras/acao_list.html', context)
-#acao_busca()
-def acao_list(request):
-    url = acao_busca()
-    saida =ast.literal_eval(url)
-
-    response = json.loads(saida.content)
-
-    resultado = response
-
-    context = {}
-    context['acao'] = resultado
-
-    return render(request, 'carteiras/acao_list', context)
-
-
-
-
-
 
 
 def carteiras(request):
