@@ -13,7 +13,7 @@ body {
     max-width: none;
     padding: 0px;
 
-    
+
 }
 
 .container-fluid {
@@ -27,8 +27,8 @@ body {
 .navbar {
     border-bottom: 1px solid #333;
     margin-bottom: 20px;
-    background-color: var(--cor0);
-    color: var(--cor0);
+    background-color: var(--cor2);
+
 }
 
 .navbar-nav {

@@ -1,50 +1,51 @@
 {% extends 'index.html' %}
 
-{% block title %}Ordens{% endblock %}
+{% block title %}Lista de ações{% endblock %}
 
+{% block search %}
+  <form method="GET" id="search-form">
+      <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome da tarefa para buscar..." value="{{ request.GET.search }}">
+      <i class="fas fa-search" id="search-btn"></i>
+  </form>
+{% endblock %}
+     <<div class="container">
+      <h2 class="text-center"><u>Tabela de Investimentos</u></h2><br>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Abertura</th>
+            <th>Maxima</th>
+            <th>Minima</th>
+            <th>Fechamento</th>
+            <th>Volume</th>
+            <th>Dividendos</th>
+            <th>Stock</th>
+            <th>Splits</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% if acao %}
+        {% for a in acao %}
+          <tr>
+            <td>{{a.Date}}</td>
+            <td>{{a.Open}}</td>
+            <td>{{a.high}}</td>
+            <td>{{a.Low}}</td>
+            <td>{{a.Close}}</td>
+            <td>{{a.Volume}}</td>
+            <td>{{a.Dividends}}</td>
+            <td>{{a.Stock}}</td>
+            <td>{{a.Splits}}</td>
+          </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
 {% block content %}
-    <<div class="container">
-  <h2 class="text-center"><u>Tabela de Investimentos</u></h2><br>
-  <table class="table table-dark table-striped">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Fechamento</th>
-        <th>Variação %</th>
-        <th>Variação em BRl</th>
-        <th>Inddice Técnico</th>
-        <th>Volume</th>
-        <th>Volume vs Preço</th>
-        <th>Valor de Mercado</th>
-        <th>Relação Preço vs Lucro</th>
-        <th>EPS 12M</th>
-        <th>Funcionários</th>
-        <th>Setor</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    {% if acao %}
-    {% for a in acao %}
-      <tr>
-        <td>{{a.nome}}</td>
-        <td>{{a.fechamento}}</td>
-        <td>{{a.variacao_p}}</td>
-        <td>{{a.variacao_em_brl}}</td>
-        <td>{{a.indice_tecnico}}</td>
-        <td>{{a.volume}}</td>
-        <td>{{a.volume_vs_preco}}</td>
-        <td>{{a.valor_de_mercado}}</td>
-        <td>{{a.relacao_preco_lucro}}</td>
-        <td>{{a.eps_12m}}</td>
-        <td>{{a.funcionarios}}</td>
-        <td>{{a.setor}}</td>
-      </tr>
-    {% endfor %}
-    {% endif %}
-    </tbody>
-  </table>
-</div>
+   teste
 
 {% endblock %}
 
