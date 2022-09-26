@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -18,11 +19,11 @@ class Busca:
     def acao(self):
         cod = self.codigo
         copel = yf.Ticker(cod)
-        dados = copel.history(period="max")
-        return dados
+
+        return copel
 
 
-#CPLE3.SA
+    #CPLE3.SA
 def buscar(request):
     search = request.GET.get('search')
     if search:
@@ -30,10 +31,15 @@ def buscar(request):
         bs = search
         tick.codigo = bs.upper() + ".SA"
         res = tick.acao()
+        historico = res.history(period='5d')
+        historico = historico.reset_index()
+        historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock']
+        dts = historico.reset_index().to_json(orient='records', date_format='iso')
         data = []
-        data = json.loads(res)
-        return render(request, 'carteiras/acao_list.html',
-                      {'acao':data})
+        data = json.loads(dts)
+        context = {'acao': data}
+        #print(data)
 
+        return render(request, 'carteiras/acao_list.html', context)
     else:
-        return render(request, 'carteiras/acao_list.html')
+        return render(request, 'carteiras/acao_buscar.html')

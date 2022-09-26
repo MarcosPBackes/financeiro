@@ -1,7 +1,12 @@
 {% extends 'index.html' %}
 
 {% block title %} Teste {% endblock %}
-
+{% block search %}
+  <form method="GET" id="search-form">
+      <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome da tarefa para buscar..." value="{{ request.GET.search }}">
+      <i class="fas fa-search" id="search-btn"></i>
+  </form>
+{% endblock %}
 {% block content %}
 
 {% endblock %}
