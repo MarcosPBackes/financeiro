@@ -34,7 +34,10 @@ def buscar(request):
         historico = res.history(period='5d')
         historico = historico.reset_index()
         historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock']
+        historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
+        historico['date'] = historico['date'].dt.strftime('%m-%d-%Y')
         dts = historico.reset_index().to_json(orient='records', date_format='iso')
+
         data = []
         data = json.loads(dts)
         context = {'acao': data}

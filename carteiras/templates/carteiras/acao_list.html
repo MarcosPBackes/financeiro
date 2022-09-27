@@ -3,9 +3,9 @@
 {% block title %}Lista de ações{% endblock %}
 
 {% block search %}
-  <form method="GET" id="search-form">
-      <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome da tarefa para buscar..." value="{{ request.GET.search }}">
-      <i class="fas fa-search" id="search-btn"></i>
+  <form class="d-flex">
+                <input class="form-control me-2" type="text" id="search" name="search" placeholder="Digite o ticker para buscar..." value="{{ request.GET.search }}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 {% endblock %}
 

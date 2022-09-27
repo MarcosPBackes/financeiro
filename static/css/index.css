@@ -34,6 +34,14 @@ body {
 .navbar-nav {
     margin: auto;
 }
+/* search */
+.d-flex {
+    justify-content: center;
+}
+
+.form-control {
+    width: 25%;
+}
 
 .navbar-brand {
     font-weight: bold;
