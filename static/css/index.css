@@ -7,20 +7,16 @@
     --cor5: #9800a3d1;
     --cor6: #EBEBEB;
     }
-
 body {
     color: var(--cor3);
     max-width: none;
     padding: 0px;
-
-
-}
+    }
 
 .container-fluid {
     padding:0;
     background-color: var(--cor1);
-
-}
+    }
 
 /* Navbar */
 
@@ -28,30 +24,29 @@ body {
     border-bottom: 1px solid #333;
     margin-bottom: 20px;
     background-color: var(--cor2);
-
-}
+    }
 
 .navbar-nav {
     margin: auto;
-}
+    }
 /* search */
 .d-flex {
     justify-content: center;
-}
+    }
 
 .form-control {
     width: 25%;
-}
+    }
 
 .navbar-brand {
     font-weight: bold;
     margin-left: 20px;
     color: var(--cor4);
-}
+    }
 
 a.nav-link{
     color:var(--cor4);
-}
+    }
 
 /* botao de adicionar */
 
@@ -63,17 +58,17 @@ a.nav-link{
     padding: 8px;
     border-radius: 5px;
     margin-right: 25px;
-}
+    }
 
 .add-div:hover {
     background-color: var(--cor2)
-}
+    }
 
 .fas.fa-plus {
     color: var(--cor6);
     margin-right: 10px;
     margin-left: 5px;
-}
+    }
 
 /* search */
 
@@ -83,42 +78,39 @@ a.nav-link{
     margin-top: 15px;
     margin-bottom: 15px;
     display: flex;
-}
+    }
 
 .fas.fa-search {
     padding-left: 10px;
     margin-top: 10px;
     color: var(--cor6)
-}
-/* lista de ordens */
+    }
 
-.variavel-div
-{
+/* lista de ordens */
+.variavel-div{
     padding: 0;
-}
+    }
 
 .variavel-div h1{
     color: var(--cor6);
-
-}
+    }
 
 .variavel-div p{
-    color: var(--cor6)
-}
+    color: var(--cor6);
+    }
 
 .variavel-list {
     padding-left: 0;
-}
+    }
 
 .lista-titulo {
     color: var(--cor6);
     text-decoration: none;
-    
-}
+    }
 
 .lista-titulo:hover {
     color: var(--cor5)
-}
+    }
 
 .ordem-item {
     color: var(--cor6);
@@ -128,102 +120,95 @@ a.nav-link{
     height: 50px;
     padding-top: 10px;
     border-bottom: 1px dashed var(--cor4);
-    
-}
-
+    }
 
 .fas.fa-search {
     cursor: pointer;
-}
+    }
 
 .fas.fa-trash, .fas.fa-edit {
     cursor: pointer;
     margin: 5px;
     font-size: 20px;
     float: right;
-}
+    }
 
 .fas.fa-trash {
     color: #db1e47;
-}
+    }
 
 .fas.fa-edit {
     color: #13c43f;
-}
+    }
 
 /* Adicionar ordens */
-
 .form-add p {
     display: grid;
     color: var(--cor5);
-}
+    }
 
 .form-div h1 {
     color: var(--cor6);
-}
+    }
 
 /* Messages */
 
 ul.messages {
     padding: 0;
-}
+    }
 
 ul.messages li {
     list-style: none;
-}
-/* paginaçao */
+    }
 
+/* paginaçao */
 .pagination {
     margin-bottom: 20px;
-}
+    }
 
 .step-links {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-}
+    }
 
 .step-links .current {
     margin-left: 5px;
     margin-right: 5px;
     color: var(--cor6);
-}
-
+    }
 
 /* footer*/
-
 div.container4 {
     height: 10em;
     position: relative;
-    background-color: var(--cor0)
-}
+    background-color: var(--cor0);
+    }
     
 div.container4 p {
     margin: 0;
-    
     position: absolute;
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%) }
+    transform: translate(-50%, -50%)
+    }
 
 
 footer p{    
-    color: var(--cor3);      
-}
+    color: var(--cor3);
+    }
 
 /* login */
-
 .auth-card {
     margin-bottom: 30px;
-}
+    }
 
 /* table */
-
 .table  {
     margin-bottom: 0px;
-}
+    }
 
 table {
     margin_bottom: 0px;
-}
+    }

@@ -33,15 +33,16 @@ def buscar():
         tick.codigo = bs.upper() + ".SA"
         res = tick.acao()
         historico = res.history(period='2d')
+        company_name = res.info['longName']
         historico = historico.reset_index()
         historico.columns = ["date", "open", "high", "low", "close", "volume", "dividends", "stock"]
         djs = historico.reset_index().to_json(orient='records', date_format='iso')
+        cpt = [{'nome': res.info['longName']}]
         data = []
         data = json.loads(djs)
         #print(data.date, data.open)
-        print(data)
-        print(djs)
-
+        #print(data)
+        print(cpt)
     else:
         pass
 #buscar()

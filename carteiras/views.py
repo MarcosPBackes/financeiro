@@ -12,17 +12,12 @@ import json
 import pandas as pd
 
 class Busca:
-
     def __int__(self, codigo):
         self.codigo = codigo
-
     def acao(self):
         cod = self.codigo
         copel = yf.Ticker(cod)
-
         return copel
-
-
     #CPLE3.SA
 def buscar(request):
     search = request.GET.get('search')
@@ -31,18 +26,19 @@ def buscar(request):
         bs = search
         tick.codigo = bs.upper() + ".SA"
         res = tick.acao()
-        historico = res.history(period='5d')
+        historico = res.history(period='30d')
         historico = historico.reset_index()
         historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock']
         historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
         historico['date'] = historico['date'].dt.strftime('%m-%d-%Y')
         dts = historico.reset_index().to_json(orient='records', date_format='iso')
-
+        cpt = [{'nome': res.info['longName']}]
+        cpt = json.dumps(cpt)
+        cpt = json.loads(cpt)
         data = []
         data = json.loads(dts)
-        context = {'acao': data}
-        #print(data)
-
+        context = {'acao': data,
+                   'cpt': cpt}
         return render(request, 'carteiras/acao_list.html', context)
     else:
         return render(request, 'carteiras/acao_buscar.html')

@@ -3,15 +3,18 @@
 {% block title %}Lista de ações{% endblock %}
 
 {% block search %}
-  <form class="d-flex">
-                <input class="form-control me-2" type="text" id="search" name="search" placeholder="Digite o ticker para buscar..." value="{{ request.GET.search }}">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-  </form>
+<form class="d-flex">
+    <input class="form-control me-2" type="text" id="search" name="search" placeholder="Digite o ticker para buscar..." value="{{ request.GET.search }}">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 {% endblock %}
 
 {% block content %}
 <<div class="container">
       <h2 class="text-center"><u>Tabela de Investimentos</u></h2><br>
+      {% for c in cpt %}
+        <h3 class="search_nome">{{c.nome}}</h3>
+      {% endfor %}
       <table class="table table-dark table-striped">
         <thead>
           <tr>
@@ -26,7 +29,6 @@
           </tr>
         </thead>
         <tbody>
-
         {% if acao %}
         {% for a in acao %}
           <tr>
@@ -38,15 +40,11 @@
             <td>{{a.volume}}</td>
             <td>{{a.dividends}}</td>
             <td>{{a.stock}}</td>
-
           </tr>
         {% endfor %}
         {% endif %}
         </tbody>
       </table>
     </div>
-
-teste
-
 {% endblock %}
 
