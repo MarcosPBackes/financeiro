@@ -32,13 +32,14 @@ def buscar(request):
         historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
         historico['date'] = historico['date'].dt.strftime('%m-%d-%Y')
         dts = historico.reset_index().to_json(orient='records', date_format='iso')
-        cpt = [{'nome': res.info['longName']}]
+        cpt = [{'nome': res.info['longName']}, {'tks': bs.upper()}]
         cpt = json.dumps(cpt)
         cpt = json.loads(cpt)
         data = []
         data = json.loads(dts)
         context = {'acao': data,
-                   'cpt': cpt}
+                   'cpt': cpt,
+                   }
         return render(request, 'carteiras/acao_list.html', context)
     else:
         return render(request, 'carteiras/acao_buscar.html')
