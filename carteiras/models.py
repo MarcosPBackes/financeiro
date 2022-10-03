@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 class Acao(models.Model):
     ticker = models.CharField(max_length=5)
     nome = models.CharField(max_length=155)
+    date_a = models.DateField(auto_now=True)
 
 class Fixa(models.Model):
     valor_inv = models.DecimalField(max_digits=11, decimal_places=2)
