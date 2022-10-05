@@ -43,3 +43,6 @@ def buscar(request):
         return render(request, 'carteiras/acao_list.html', context)
     else:
         return render(request, 'carteiras/acao_buscar.html')
+
+def carteira(request):
+    return render(request, 'carteiras/carteira.html')

@@ -13,8 +13,9 @@ class VariavelForm(forms.ModelForm):
         fields = ('acao', 'preco_medio', 'quantidade', 'valor_pago')
     
         
-class AcaoForm(forms.ModelForm):
-
-    pass
+class FixaForm(forms.ModelForm):
+    class Meta:
+        model = Variavel
+        fields = ()
 
 

@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<<div class="container">
+    <div class="container">
       <h2 class="text-center"><u>Tabela de Investimentos</u></h2><br>
       {% for c in cpt %}
         <h3 class="search_nome">{{c.nome}} {{c.tks}}</h3>
@@ -18,7 +18,7 @@
       <table class="table table-dark table-striped">
         <thead>
           <tr>
-            <th>Data</th>
+            <a href="{% url 'carteira' %}"><th>Data</th> </a>
             <th>Abertura</th>
             <th>Maxima</th>
             <th>Minima</th>
@@ -31,8 +31,11 @@
         <tbody>
         {% if acao %}
         {% for a in acao %}
+
           <tr>
-            <td>{{a.date}}</td>
+            <td>
+              <a href="{% url 'carteira' %}">{{a.date}}</a>
+            </td>
             <td>{{a.open}}</td>
             <td>{{a.high}}</td>
             <td>{{a.low}}</td>
@@ -41,6 +44,7 @@
             <td>{{a.dividends}}</td>
             <td>{{a.stock}}</td>
           </tr>
+
         {% endfor %}
         {% endif %}
         </tbody>
