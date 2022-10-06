@@ -7,6 +7,8 @@ from django.contrib import messages
 import yfinance as yf
 import investpy as inv
 
+from .forms import AcaoForm, VariavelForm
+from .models import Acao, Variavel
 
 import json
 import pandas as pd
@@ -21,6 +23,8 @@ class Busca:
     #CPLE3.SA
 def buscar(request):
     search = request.GET.get('search')
+    adicionar = request.GET.get('adicionar')
+
     if search:
         tick = Busca()
         bs = search
@@ -32,7 +36,7 @@ def buscar(request):
         historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
         historico['date'] = historico['date'].dt.strftime('%m-%d-%Y')
         dts = historico.reset_index().to_json(orient='records', date_format='iso')
-        cpt = [{'nome': res.info['longName']}, {'tks': bs.upper()}]
+        cpt = [{'nome': res.info['longName'], 'tks': bs.upper()}]
         cpt = json.dumps(cpt)
         cpt = json.loads(cpt)
         data = []
@@ -40,7 +44,17 @@ def buscar(request):
         context = {'acao': data,
                    'cpt': cpt,
                    }
+        if adicionar:
+            cp = cpt
+            form = AcaoForm
+            ct = cp.tks
+
+            pass
+
         return render(request, 'carteiras/acao_list.html', context)
+
+
+
     else:
         return render(request, 'carteiras/acao_buscar.html')
 

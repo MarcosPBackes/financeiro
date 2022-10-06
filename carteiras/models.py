@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 class Acao(models.Model):
-    ticker = models.CharField(max_length=5)
+    tks = models.CharField(max_length=5)
     nome = models.CharField(max_length=155)
     date_a = models.DateField(auto_now=True)
 

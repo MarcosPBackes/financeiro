@@ -5,7 +5,7 @@ from .models import Variavel, Acao
 class AcaoForm(forms.ModelForm):
     class Meta:
         model = Acao
-        fields = ('ticker', 'nome')
+        fields = ('tks', 'nome')
 
 class VariavelForm(forms.ModelForm):
     class Meta:
