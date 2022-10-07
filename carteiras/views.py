@@ -18,8 +18,17 @@ class Busca:
         self.codigo = codigo
     def acao(self):
         cod = self.codigo
-        copel = yf.Ticker(cod)
-        return copel
+        res = yf.Ticker(cod)
+        historico = res.history(period='5d')
+        company_name = res.info['longName']
+        historico = historico.reset_index()
+        historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock']
+        historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
+        historico['date'] = historico['date'].dt.strftime('%m-%d-%Y')
+        dts = historico.reset_index().to_json(orient='records', date_format='iso')
+        cpt = [{'nome': res.info['longName'], 'tks': self.codigo.upper()}]
+        cpp = json.dumps(cpt)
+        return dts, cpp
     #CPLE3.SA
 def buscar(request):
     search = request.GET.get('search')
@@ -30,27 +39,7 @@ def buscar(request):
         bs = search
         tick.codigo = bs.upper() + ".SA"
         res = tick.acao()
-        historico = res.history(period='30d')
-        historico = historico.reset_index()
-        historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock']
-        historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
-        historico['date'] = historico['date'].dt.strftime('%m-%d-%Y')
-        dts = historico.reset_index().to_json(orient='records', date_format='iso')
-        cpt = [{'nome': res.info['longName'], 'tks': bs.upper()}]
-        cpt = json.dumps(cpt)
-        cpt = json.loads(cpt)
-        data = []
-        data = json.loads(dts)
-        context = {'acao': data,
-                   'cpt': cpt,
-                   }
-        if adicionar:
-            cp = cpt
-            form = AcaoForm
-            ct = cp.tks
-
-            pass
-
+        dat = res[0][]
         return render(request, 'carteiras/acao_list.html', context)
 
 
