@@ -21,8 +21,7 @@ class Busca:
     def acao(self):
         cod = self.codigo
         res = yf.Ticker(cod)
-        historico = res.history(period='2d')
-        company_name = res.info['longName']
+        historico = res.history(period='5d')
         historico = historico.reset_index()
         historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock']
         historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
@@ -33,7 +32,6 @@ class Busca:
         cpp = json.loads(cpp)
         data = []
         data = json.loads(dts)
-
         return data, cpp
 
 def buscar():
@@ -45,7 +43,9 @@ def buscar():
         tick.codigo = bs.upper() + ".SA"
         res = tick.acao()
         data = res[0]
-        cp = res[1][0]['nome']
+        acao_nome = res[1][0]['nome']
+        acao_tick = res[1][0]['tks']
         #print(data)
-        print(cp)
-buscar()
+        print(type(acao_nome))
+        print(acao_tick)
+#buscar()

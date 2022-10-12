@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block title %}Adicionar ação{% endblock %}
+{% block search %}
+<form class="d-flex">
+        <input class="form-control me-2" type="text" id="search" name="search" placeholder="Digite o ticker para buscar..." value="{{ request.GET.search }}">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+{% endblock %}
+{% block content %}
+
+{% endblock %}

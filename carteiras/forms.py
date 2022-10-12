@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Variavel, Acao
+from .models import Variavel, Acao, Fixa
 
 class AcaoForm(forms.ModelForm):
     class Meta:
@@ -15,7 +15,7 @@ class VariavelForm(forms.ModelForm):
         
 class FixaForm(forms.ModelForm):
     class Meta:
-        model = Variavel
-        fields = ()
+        model = Fixa
+        fields = ('valor_inv', 'rendimento', 'tempo', 'data_inv')
 
 
