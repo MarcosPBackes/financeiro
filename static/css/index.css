@@ -212,3 +212,34 @@ footer p{
 table {
     margin_bottom: 0px;
     }
+
+/* table variavel */
+
+/* renda fixa */
+.fixa_list {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+.fixa_list li {
+    display: flex;
+    margin-bottom: 5vh;
+    border: solid 0.5em var(--cor2);
+    border-radius: 1em;
+    padding: 0px 10px 0px 10px
+}
+
+.fixa_list li:hover {
+    background-color: var(--cor6);
+}
+
+
+
+.fixa_descricao {
+}
+.fixa_tipo {
+    margin-left: 3vh;
+}
+.fixa_valor {
+    margin-left: 3vh;
+}

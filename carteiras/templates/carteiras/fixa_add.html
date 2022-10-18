@@ -1,13 +1,17 @@
 {% extends 'index.html' %}
 
+
 {% block title %}Fixa{% endblock %}
 
 {% block content %}
+{% load l10n %}
     <div class="offset-1 col-10 form-div">
     <h1>Adicione uma nova renda fixa</h1>
     <form class="form-add" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
+        {{data_inv|date:'%d-%m-%Y'}}
+        {{valor_inv|localize}}
         <input type="submit" class="btn btn-success" value="Salvar">
     </form>
     </div>

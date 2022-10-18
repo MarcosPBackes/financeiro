@@ -8,7 +8,7 @@ import yfinance as yf
 import investpy as inv
 
 from .forms import AcaoForm, VariavelForm, FixaForm
-from .models import Acao, Variavel
+from .models import Acao, Variavel, Fixa
 
 import json
 import pandas as pd
@@ -61,7 +61,7 @@ def carteira(request):
 
 def fixa_add(request):
     if request.method == 'POST':
-        form = FixaForm(request.POST)
+        form = FixaForm(request.POST or None)
 
         if form.is_valid():
             fixa = form.save(commit=False)
@@ -71,3 +71,11 @@ def fixa_add(request):
     else:
         form = FixaForm()
         return render(request, 'carteiras/fixa_add.html', {'form': form})
+
+def fixa_list(request):
+    lista_f = Fixa.objects.all().order_by('-date_a').filter(user=request.user)
+    paginator = Paginator(lista_f, 10)
+    page = request.GET.get('page')
+    lista = paginator.get_page(page)
+
+    return render(request, 'carteiras/fixa_list.html', {'lista': lista})

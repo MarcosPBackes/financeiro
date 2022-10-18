@@ -13,6 +13,7 @@ import yfinance as yf
 
 
 
+
 class Busca:
 
     def __int__(self, codigo):
@@ -49,3 +50,12 @@ def buscar():
         print(type(acao_nome))
         print(acao_tick)
 #buscar()
+
+def fixa_list(request):
+    lista_f = Fixa.objects.all().order_by('-date_a').filter(user=request.user)
+
+    paginator = Paginator(lista_f, 10)
+    page = request.GET.get('page')
+    lista = paginator.get_page(page)
+    print(lista)
+#fixa_list('marcos')
