@@ -1,1 +1,16 @@
 {% extends 'index.html' %}
+
+{% block title %}Investimento renda Fixa{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 ordem-div">
+    <h1>Detalhes do Investimento</h1>
+    <p>{{fixa.descricao_tipo}}</p>
+    <p>{{fixa.valor_inv}}</p>
+    <p>{{fixa.tipo}}</p>
+    <p>{{fixa.data_inv}}</p>
+    <p>{{fixa.rendimento}}</p>
+    <p>{{fixa.tempo}}</p>
+
+</div>
+{% endblock %}

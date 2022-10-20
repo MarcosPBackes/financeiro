@@ -9,40 +9,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-      <h2 class="text-center"><u>Tabela de Investimentos</u></h2><br>
-      {% for c in cpt %}
-        <h3 class="search_nome">{{c.nome}} {{c.tks}}</h3>
-      {% endfor %}
-      <table class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th>Ticker</th>
-            <th>Nome</th>
-            <th>Quantidade</th>
-            <th>Valor Médio</th>
-            <th>Valor Atual</th>
-            <th>Variação</th>
-            <th>Preço Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% if acao %}
-        {% for a in acao %}
-          <tr>
-            <td>{{a.date}}</td>
-            <td>{{a.open}}</td>
-            <td>{{a.high}}</td>
-            <td>{{a.low}}</td>
-            <td>{{a.close}}</td>
-            <td>{{a.volume}}</td>
-            <td>{{a.dividends}}</td>
-            <td>{{a.stock}}</td>
-          </tr>
-        {% endfor %}
-        {% endif %}
-        </tbody>
-      </table>
+<div class="carteira">
+    <h2>Minha Carteira de Investimentos</h2>
+    <div class="carteira_investimento">
+    <div class="renda_fixa">
+        <h3><a href="{% url 'fixa_list' %}">Investimentos de renda fixa</a></h3>
     </div>
+    <div class="renda_variavel">
+        <h3>Investimentos de renda variavel</h3>
+    </div>
+    </div>
+</div>
 
 {% endblock %}

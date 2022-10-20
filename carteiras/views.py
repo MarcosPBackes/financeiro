@@ -79,3 +79,7 @@ def fixa_list(request):
     lista = paginator.get_page(page)
 
     return render(request, 'carteiras/fixa_list.html', {'lista': lista})
+
+def fixa_view(request, id):
+    fixa = get_object_or_404(Fixa, pk=id)
+    return render (request, 'carteiras/fixa_view.html', {'fixa': fixa})

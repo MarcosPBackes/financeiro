@@ -2,23 +2,27 @@
 {% block title %}Lista de renda fixa{% endblock %}
 
 {% block content %}
+<div class="carteira_h1">
+<h1>Investimentos em renda Fixa</h1>
+</div>
   <ul class="fixa_list">
         {% for fixa in lista %}
+            <a href="/carteiras/fixa_view/{{fixa.id}}">
             <li>
                 <div class="fixa_descricao">
-                <h2>Descrição</h2>
-                <spam><h4 class="lista_titulo" href="/carteiras/{{fixa.id}}">{{fixa.descricao_tipo}}</h4></spam>
+                <h3>Descrição</h3>
+               <h5 class="lista_titulo" >{{fixa.descricao_tipo}}</h5>
                 </div>
                 <div class="fixa_tipo">
-                <h2>Tipo de investimento</h2>
-                <spam><h4 class="lista_tipo" href="/carteiras/{{fixa.id}}">{{fixa.get_tipo_display}}</h4></spam>
+                <h3>Tipo de investimento</h3>
+                <h5 class="lista_tipo" >{{fixa.get_tipo_display}}</h5>
                 </div>
                 <div class="fixa_valor">
-                <h2>Valor Investido</h2>
-                <spam><h4 class="lista_tipo" href="/carteiras/{{fixa.id}}">{{fixa.valor_inv}}</h4></spam>
+                <h3>Valor Investido</h3>
+                <h5 class="lista_tipo">{{fixa.valor_inv}}</h5>
                 </div>
             </li>
-
+            </a>
         {% endfor %}
   </ul>
 {% endblock %}

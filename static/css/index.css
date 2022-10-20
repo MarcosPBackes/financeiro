@@ -213,6 +213,34 @@ table {
     margin_bottom: 0px;
     }
 
+/* carteira */
+.carteira_h1 h1 {
+    text-align: center;
+    padding-bottom: 3vh;
+    color: var(--cor4);
+}
+
+.carteira_investimento {
+    display: flex;
+    justify-content: center;
+}
+
+.carteira_investimento h3 {
+    margin: 1vh 5vh 5px 5vh;
+}
+
+.carteira_investimento h3 a {
+    text-decoration: none;
+    color: var(--cor6)
+}
+
+.carteira_investimento h3 a:hover {
+    color: var(--cor4);
+}
+.carteira h2 {
+    text-align: center;
+    }
+
 /* table variavel */
 
 /* renda fixa */
@@ -221,6 +249,7 @@ table {
     justify-content: center;
     margin-bottom: 0px;
 }
+
 .fixa_list li {
     display: flex;
     margin-bottom: 5vh;
@@ -230,7 +259,7 @@ table {
 }
 
 .fixa_list li:hover {
-    background-color: var(--cor6);
+    background-color: var(--cor5);
 }
 
 

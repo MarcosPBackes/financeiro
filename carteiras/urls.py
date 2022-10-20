@@ -7,5 +7,6 @@ urlpatterns = [
     path('acao_list/', views.buscar, name='acao_list'),
     path('carteira/', views.carteira, name='carteira'),
     path('fixa_add/', views.fixa_add, name='fixa_add'),
-    path('fixa_list', views.fixa_list,  name='fixa_list'),
+    path('fixa_list/', views.fixa_list,  name='fixa_list'),
+    path('fixa_view/<int:id>', views.fixa_view, name='fixa_view')
 ]
