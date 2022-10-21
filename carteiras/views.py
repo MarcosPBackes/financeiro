@@ -83,3 +83,26 @@ def fixa_list(request):
 def fixa_view(request, id):
     fixa = get_object_or_404(Fixa, pk=id)
     return render (request, 'carteiras/fixa_view.html', {'fixa': fixa})
+
+def fixa_edit(request, id):
+    fixa = get_object_or_404(Fixa, pk=id)
+    form = FixaForm(instance=fixa)
+
+    if(request.method == 'POST'):
+        form = FixaForm(request.POST, instance=fixa)
+        if(form.is_valid()):
+            fixa.save()
+            return redirect('carteira')
+        else:
+            return render(request, 'carteiras/fixa_edit.html', {'form':form, 'fixa':fixa})
+
+    else:
+        return render(request, 'carteiras/fixa_edit.html', {'form': form, 'fixa': fixa})
+
+def fixa_delete(request, id):
+    fixa = get_object_or_404(Fixa, pk=id)
+    fixa.delete()
+
+    messages.info(request, 'Investimento deletado com sucesso!')
+
+    return redirect('carteira')

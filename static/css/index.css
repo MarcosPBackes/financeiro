@@ -250,6 +250,10 @@ table {
     margin-bottom: 0px;
 }
 
+.fixa_list a {
+    text-decoration: none;
+}
+
 .fixa_list li {
     display: flex;
     margin-bottom: 5vh;
@@ -262,7 +266,20 @@ table {
     background-color: var(--cor5);
 }
 
+.view_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0px 10%;
+}
 
+.btn_edit_delete {
+    width: 50%;
+}
+
+.fixa_detail {
+    width: 50%;
+}
 
 .fixa_descricao {
 }
