@@ -23,7 +23,7 @@
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
         <a href="/carteiras/fixa_delete/{{fixa.id}}" onclick="return confirm('Realmente deseja excluir?')"><button type="button" class="btn btn-danger">Deletar</button></a>
         <a href="/carteiras/fixa_edit/{{fixa.id}}"><button type="button" class="btn btn-warning">Editar</button></a>
-        <button type="button" class="btn btn-success">Adicionar</button>
+        <a href="{% url 'fixa_add' %}"><button type="button" class="btn btn-success">Adicionar</button></a>
     </div>
     </div>
 </div>

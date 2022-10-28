@@ -1,10 +1,10 @@
 {% extends 'index.html' %}
 
-{% block title %}{{variavel.nome}}{% endblock %}
+{% block title %}{{variavel.acao}}{% endblock %}
 
 {% block content %}
 <div class="offset-1 col-10 form-div">
-    <h1>Editando '{{variavel.nome}}'</h1>
+    <h1>Editando '{{variavel.acao}}'</h1>
     <form acition="{% url 'variavel_edit' variavel.id %}"class="form-add" method="POST">
         {% csrf_token %}
         {{ form.as_p }}

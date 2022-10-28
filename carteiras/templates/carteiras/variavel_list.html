@@ -3,49 +3,29 @@
 {% block title %}Ordens{% endblock %}
 
 {% block content %}
-<div class="offset-1 col-10 variavel-div">
-    <h1> Lista de Investimentos</h1>
-    <a class="add-variavel" href="variavel_add/">
-        <div class="col-2 add-div">
-            <i class="fas fa-plus"></i>Adicionar Ordem
-        </div>
-    </a>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li {% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <div class="search-div">
-        <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome da OS para buscar">
-        <spam><i class="fas fa-search"></i></spam>
-    </div>
-    <ul class="variavel-list">
-        {% for variavel in carteiras %}
-        <li class="variavel-item">
-            <spam><a class="lista-titulo" href="/carteiras/{{variavel.id}}">{{variavel.titulo}}</a></spam>
-            <a href="/carteiras/variavel_delete/{{variavel.id}}" class="delete-btn" onclick="return confirm('Realmente deseja excluir?')"><spam><i class="fas fa-trash"></i></spam></a>
-            <a href="/carteiras/variavel_edit/{{variavel.id}}"><spam><i class="fas fa-edit"></i></spam></a>
-        </li>
-        {% endfor %}
-    </ul>
-    <div class="pagination">
-        <spam class="step-links">
-            {% if carteiras.has_previous %}
-                <a href="?page={{ carteiras.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
-            {% endif %}
-            
-            <spam class="current">
-                {{ carteiras.number }} de {{ carteiras.paginator.num_pages }}        
-            </spam>
-
-            {% if carteiras.has_next %}
-            <a href="?page={{ carteiras.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
-            {% endif %}
-        </spam>
-    </div>
+<div class="carteira_h1">
+<h1>Investimentos em renda variavel</h1>
+<a href="{% url 'variavel_add' %}"><button type="button" class="btn btn-outline-success">Adicionar</button></a>
 </div>
-
+  <ul class="fixa_list">
+        {% for variavel in lista %}
+            <a href="/carteiras/fixa_view/{{variavel.id}}">
+            <li>
+                <div class="fixa_descricao">
+                <h3>Descrição</h3>
+               <h5 class="lista_titulo" >{{fixa.descricao_tipo}}</h5>
+                </div>
+                <div class="fixa_tipo">
+                <h3>Tipo de investimento</h3>
+                <h5 class="lista_tipo" >{{fixa.get_tipo_display}}</h5>
+                </div>
+                <div class="fixa_valor">
+                <h3>Valor Investido</h3>
+                <h5 class="lista_tipo">{{fixa.valor_inv}}</h5>
+                </div>
+            </li>
+            </a>
+        {% endfor %}
+  </ul>
 {% endblock %}
 

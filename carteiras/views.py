@@ -33,7 +33,6 @@ class Busca:
         return data, cpp
     #CPLE3.SA
 def buscar(request):
-    adicionar = VariavelForm(request.POST or None)
     search = request.GET.get('search')
     if search:
         tick = Busca()
@@ -49,8 +48,9 @@ def buscar(request):
         if request.POST:
             nome_a = res[1][0]['nome']
             tick_a = res[1][0]['tks']
-            form = VariavelForm(request)
-            return render(request, 'carteiras/acao_add.html', context)
+            acao = Acao(tks=tick_a, nome=nome_a)
+            acao.save()
+            return redirect('variavel_add')
 
         return render(request, 'carteiras/acao_list.html', context)
     else:
@@ -59,6 +59,32 @@ def buscar(request):
 def carteira(request):
     return render(request, 'carteiras/carteira.html')
 
+def variavel_add(request):
+    if request.method == 'POST':
+        form = VariavelForm(request.POST or None)
+
+        if form.is_valid():
+            variavel = form.save(commit=False)
+            variavel.user = request.user
+            variavel.save()
+            return redirect('carteira')
+    else:
+        form = VariavelForm()
+        return render(request, 'carteiras/variavel_add.html', {'form': form})
+
+def variavel_edit(request, id):
+    variavel = get_object_or_404(Variavel, pk=id)
+    form = VariavelForm(instance=variavel)
+
+    if(request.method == 'POST'):
+        form = VariavelForm(request.POST, instance=variavel)
+        if(form.is_valid()):
+            variavel.save()
+            return redirect('carteira')
+        else:
+            return render(request, 'carteiras/variaavel_edit.html', {'form': form}, {'variavel': variavel})
+    else:
+        return render(request, 'carteiras/variaavel_edit.html', {'form':form}, {'variavel':variavel})
 def fixa_add(request):
     if request.method == 'POST':
         form = FixaForm(request.POST or None)
@@ -77,7 +103,6 @@ def fixa_list(request):
     paginator = Paginator(lista_f, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)
-
     return render(request, 'carteiras/fixa_list.html', {'lista': lista})
 
 def fixa_view(request, id):
@@ -102,7 +127,6 @@ def fixa_edit(request, id):
 def fixa_delete(request, id):
     fixa = get_object_or_404(Fixa, pk=id)
     fixa.delete()
-
     messages.info(request, 'Investimento deletado com sucesso!')
 
     return redirect('carteira')

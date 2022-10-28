@@ -14,8 +14,12 @@
       <h2 class="text-center"><u>Tabela de Investimentos</u></h2><br>
       <div class="dados_acao">
       {% for c in cpt %}
+        <form method="post">
+          {% csrf_token %}
           <h2>{{c.nome}}</h2>
-          <h3>{{c.tks}} <button type="button" id="adicionar" class="btn btn-success btn-sm">Adicionar</button></h3>
+          <h3>{{c.tks}}</h3>
+          <input type="submit" class="btn btn-success" value="Criar ação">
+        </form>
       {% endfor %}
       </div>
       <table class="table table-dark table-striped">

@@ -4,6 +4,7 @@
 {% block content %}
 <div class="carteira_h1">
 <h1>Investimentos em renda Fixa</h1>
+<a href="{% url 'fixa_add' %}"><button type="button" class="btn btn-outline-success">Adicionar</button></a>
 </div>
   <ul class="fixa_list">
         {% for fixa in lista %}

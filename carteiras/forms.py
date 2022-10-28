@@ -10,9 +10,16 @@ class AcaoForm(forms.ModelForm):
 class VariavelForm(forms.ModelForm):
     class Meta:
         model = Variavel
-        fields = ('acao', 'preco_medio', 'quantidade', 'valor_pago')
-
-    
+        fields = ('acao', 'data_compra', 'quantidade', 'valor_pago')
+        widgets = {
+            'data_compra': forms.DateInput(
+                format=('%Y-%m-%d'),
+                attrs={'type': 'date'}
+            ),
+            'valor_pago': forms.NumberInput(
+                attrs={'step': 0.01}
+            )
+        }
         
 class FixaForm(forms.ModelForm):
     class Meta:

@@ -30,16 +30,22 @@ class Fixa(models.Model):
     data_inv = models.DateField()
 
 class Acao(models.Model):
-    tks = models.CharField(max_length=5)
+    tks = models.CharField(max_length=10)
     nome = models.CharField(max_length=155)
     date_a = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.nome
 
 
 
 class Variavel(models.Model):
-    acao = models.ForeignKey(Acao, on_delete=models.PROTECT)
-    preco_medio = models.DecimalField(max_digits=11, decimal_places=2)
+    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    date_a = models.DateField(auto_now=True)
+    data_compra = models.DateField(null=True, blank=True)
+    acao = models.ForeignKey(Acao, on_delete=models.PROTECT, blank=False, null=False)
     quantidade = models.IntegerField()
     valor_pago = models.DecimalField(max_digits=11, decimal_places=2)
-    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    def __str__(self):
+        return self.acao
 

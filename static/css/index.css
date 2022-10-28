@@ -214,10 +214,17 @@ table {
     }
 
 /* carteira */
+.carteira_h1 {
+    display: flex;
+    justify-content: center;
+}
 .carteira_h1 h1 {
     text-align: center;
-    padding-bottom: 3vh;
     color: var(--cor4);
+}
+.carteira_h1 button {
+    margin-left: 100%;
+    margin-top: 5px;
 }
 
 .carteira_investimento {
@@ -247,6 +254,7 @@ table {
 .fixa_list {
     display: grid;
     justify-content: center;
+    margin-top: 15px;
     margin-bottom: 0px;
 }
 
