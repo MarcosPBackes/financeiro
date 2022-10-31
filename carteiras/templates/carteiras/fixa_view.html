@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="view_body">
-    <div class="fixa_detail">
+    <div class="investimento_detalhe">
         <h1>Detalhes do Investimento</h1>
         <h3>Descrição</h3>
         <h5>{{fixa.descricao_tipo}}</h5>
@@ -20,7 +20,7 @@
         <h5>{{fixa.get_tempo_display}}</h5>
     </div>
     <div class="btn_edit_delete">
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="margin-left: 5em;">
         <a href="/carteiras/fixa_delete/{{fixa.id}}" onclick="return confirm('Realmente deseja excluir?')"><button type="button" class="btn btn-danger">Deletar</button></a>
         <a href="/carteiras/fixa_edit/{{fixa.id}}"><button type="button" class="btn btn-warning">Editar</button></a>
         <a href="{% url 'fixa_add' %}"><button type="button" class="btn btn-success">Adicionar</button></a>

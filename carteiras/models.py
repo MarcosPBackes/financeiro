@@ -46,6 +46,5 @@ class Variavel(models.Model):
     acao = models.ForeignKey(Acao, on_delete=models.PROTECT, blank=False, null=False)
     quantidade = models.IntegerField()
     valor_pago = models.DecimalField(max_digits=11, decimal_places=2)
-    def __str__(self):
-        return self.acao
+
 

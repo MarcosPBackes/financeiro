@@ -3,9 +3,9 @@
 {% block title %}Editando{% endblock %}
 
 {% block content %}
-<div class="offset-1 col-10 form-div">
-    <h1>Editando '{{ordem.titulo}}'</h1>
-    <form acition="{% url 'fixa_edit' fixa.id %}"class="form-add" method="POST">
+<div class="offset-3 col-6 form-div">
+    <h1>Editando {{fixa.descricao_tipo}}</h1>
+    <form action="{% url 'fixa_edit' fixa.id %}" class="form-add" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         {{data_inv|date:'%d-%m-%Y'}}

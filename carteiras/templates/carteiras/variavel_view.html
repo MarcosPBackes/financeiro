@@ -3,13 +3,24 @@
 {% block title %}Adicionar{% endblock %}
 
 {% block content %}
-<div class="offset-1 col-10 variavel-div">
-    <h1>{{variavel.codigo}}</h1>
-    <p>{{variavel.nome}}</p>
-    <p>{{variavel.valor}}</p>
-    <p>{{variavel.data_compra}}</p>
-    <p>{{variavel.quantidade}}</p>
-    {{valor | floatformat:2}}
+<div class="view_body">
+    <div class="investimento_detalhe">
+        <h1>Detalhes do Investimento</h1>
+        <h3>Descrição</h3>
+        <h5>{{variavel.acao}}</h5>
+        <h3>Valor pago por ação</h3>
+        <h5>{{variavel.valor_pago}}</h5>
+        <h3>Quantidade</h3>
+        <h5>{{variavel.quantidade}}</h5>
+        <h3>Data do investimento</h3>
+        <h5>{{variavel.data_compra}}</h5>
+    </div>
+    <div class="btn_edit_delete">
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="margin-left: 5em;">
+        <a href="/carteiras/variavel_delete/{{variavel.id}}" onclick="return confirm('Realmente deseja excluir?')"><button type="button" class="btn btn-danger">Deletar</button></a>
+        <a href="/carteiras/variavel_edit/{{variavel.id}}"><button type="button" class="btn btn-warning">Editar</button></a>
+        <a href="{% url 'variavel_add' %}"><button type="button" class="btn btn-success">Adicionar</button></a>
+    </div>
+    </div>
 </div>
-
 {% endblock %}

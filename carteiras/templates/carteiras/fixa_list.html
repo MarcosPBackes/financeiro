@@ -6,21 +6,21 @@
 <h1>Investimentos em renda Fixa</h1>
 <a href="{% url 'fixa_add' %}"><button type="button" class="btn btn-outline-success">Adicionar</button></a>
 </div>
-  <ul class="fixa_list">
+  <ul class="carteira_list">
         {% for fixa in lista %}
             <a href="/carteiras/fixa_view/{{fixa.id}}">
             <li>
-                <div class="fixa_descricao">
+                <div class="carteira_detalhe">
                 <h3>Descrição</h3>
-               <h5 class="lista_titulo" >{{fixa.descricao_tipo}}</h5>
+               <h5 class="carteira_detalhe_h5" >{{fixa.descricao_tipo}}</h5>
                 </div>
-                <div class="fixa_tipo">
+                <div class="carteira_detalhe">
                 <h3>Tipo de investimento</h3>
-                <h5 class="lista_tipo" >{{fixa.get_tipo_display}}</h5>
+                <h5 class="carteira_detalhe_h5" >{{fixa.get_tipo_display}}</h5>
                 </div>
-                <div class="fixa_valor">
+                <div class="carteira_detalhe">
                 <h3>Valor Investido</h3>
-                <h5 class="lista_tipo">{{fixa.valor_inv}}</h5>
+                <h5 class="carteira_detalhe_h5">{{fixa.valor_inv}}</h5>
                 </div>
             </li>
             </a>

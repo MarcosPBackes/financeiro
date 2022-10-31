@@ -3,12 +3,14 @@
 {% block title %}{{variavel.acao}}{% endblock %}
 
 {% block content %}
-<div class="offset-1 col-10 form-div">
-    <h1>Editando '{{variavel.acao}}'</h1>
-    <form acition="{% url 'variavel_edit' variavel.id %}"class="form-add" method="POST">
+<div class="offset-3 col-6 form-div">
+    <h1>Editando {{variavel.acao}}</h1>
+    <form action="{% url 'variavel_edit' variavel.id %}" class="form-add" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" class="btn btn-success" value="Editar Ação">
+        {{data_compra|date:'%d-%m-%Y'}}
+
+        <input type="submit" class="btn btn-success" value="Editar Ordem">
     </form>
 </div>
 

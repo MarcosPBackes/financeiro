@@ -222,6 +222,36 @@ table {
     text-align: center;
     color: var(--cor4);
 }
+.carteira_list {
+    display: grid;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.investimento_detalhe {
+    width: 50%;
+}
+
+.carteira_list a {
+    text-decoration: none;
+    width: 100vh;
+}
+.carteira_list li {
+    display: flex;
+    margin-bottom: 5vh;
+    border: solid 0.5em var(--cor2);
+    border-radius: 1em;
+    padding: 0px 10px 0px 10px
+}
+.carteira_detalhe {
+    width: 50%;
+    margin-left:15px;
+    margin-right:15px;
+}
+.carteira_list li:hover {
+    background-color: var(--cor5);
+}
 .carteira_h1 button {
     margin-left: 100%;
     margin-top: 5px;
@@ -251,29 +281,6 @@ table {
 /* table variavel */
 
 /* renda fixa */
-.fixa_list {
-    display: grid;
-    justify-content: center;
-    margin-top: 15px;
-    margin-bottom: 0px;
-}
-
-.fixa_list a {
-    text-decoration: none;
-}
-
-.fixa_list li {
-    display: flex;
-    margin-bottom: 5vh;
-    border: solid 0.5em var(--cor2);
-    border-radius: 1em;
-    padding: 0px 10px 0px 10px
-}
-
-.fixa_list li:hover {
-    background-color: var(--cor5);
-}
-
 .view_body {
     display: flex;
     flex-direction: row;
@@ -282,10 +289,6 @@ table {
 }
 
 .btn_edit_delete {
-    width: 50%;
-}
-
-.fixa_detail {
     width: 50%;
 }
 

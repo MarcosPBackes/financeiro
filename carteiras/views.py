@@ -72,6 +72,15 @@ def variavel_add(request):
         form = VariavelForm()
         return render(request, 'carteiras/variavel_add.html', {'form': form})
 
+def variavel_list(request):
+    lista_v = Variavel.objects.all().order_by('-date_a').filter(user=request.user)
+    paginator = Paginator(lista_v, 10)
+    page = request.GET.get('page')
+    lista = paginator.get_page(page)
+    return render(request, 'carteiras/variavel_list.html', {'lista': lista})
+def variavel_view(request, id):
+    variavel = get_object_or_404(Variavel, pk=id)
+    return render (request, 'carteiras/variavel_view.html', {'variavel': variavel})
 def variavel_edit(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
     form = VariavelForm(instance=variavel)
@@ -82,9 +91,15 @@ def variavel_edit(request, id):
             variavel.save()
             return redirect('carteira')
         else:
-            return render(request, 'carteiras/variaavel_edit.html', {'form': form}, {'variavel': variavel})
+            return render(request, 'carteiras/variavel_edit.html', {'form':form, 'variavel':variavel})
+
     else:
-        return render(request, 'carteiras/variaavel_edit.html', {'form':form}, {'variavel':variavel})
+        return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel':variavel})
+def variavel_delete(request, id):
+    variavel = get_object_or_404(Variavel, pk=id)
+    variavel.delete()
+    messages.info(request, 'Investimento deletado com sucesso!')
+    return redirect('carteira')
 def fixa_add(request):
     if request.method == 'POST':
         form = FixaForm(request.POST or None)
