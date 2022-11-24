@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}Entrada{% endblock %}
+
+{% block content %}
+<div class="offset-3 col-6 form-div">
+    <h1>Adicione</h1>
+    <form class="form-add" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Adicionar">
+    </form>
+</div>
+
+{% endblock %}

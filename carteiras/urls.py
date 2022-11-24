@@ -4,6 +4,8 @@ from . import views
 urlpatterns = [
     path('acao_buscar/', views.buscar, name='acao_buscar'),
     path('acao_list/', views.buscar, name='acao_list'),
+    path('entrada_add/', views.entrada_add, name='entrada_add'),
+    path('saida_add/', views.saida_add, name='saida_add'),
     path('variavel_list/', views.variavel_list, name='variavel_list'),
     path('variavel_add/', views.variavel_add, name='variavel_add'),
     path('variavel_view/<int:id>/', views.variavel_view, name='variavel_view'),

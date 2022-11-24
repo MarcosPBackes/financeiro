@@ -1,11 +1,19 @@
 from django import forms
 
-from .models import Variavel, Acao, Fixa
+from .models import Variavel, Acao, Fixa, Entrada, Saida
 
 class AcaoForm(forms.ModelForm):
     class Meta:
         model = Acao
         fields = ('tks', 'nome')
+class ContaeForm(forms.ModelForm):
+    class Meta:
+        model = Entrada
+        fields = ('descricao', 'faturado', 'valor', 'data_e')
+class ContasForm(forms.ModelForm):
+    class Meta:
+        model = Saida
+        fields = ('descricao', 'faturado', 'valor', 'data_e')
 
 class VariavelForm(forms.ModelForm):
     class Meta:

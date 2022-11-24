@@ -7,12 +7,11 @@ from django.contrib import messages
 import yfinance as yf
 import investpy as inv
 
-from .forms import AcaoForm, VariavelForm, FixaForm
-from .models import Acao, Variavel, Fixa
+from .forms import VariavelForm, FixaForm, ContaeForm, ContasForm
+from .models import Acao, Variavel, Fixa, Entrada, Saida
 
 import json
 import pandas as pd
-
 class Busca:
     def __int__(self, codigo):
         self.codigo = codigo
@@ -55,14 +54,33 @@ def buscar(request):
         return render(request, 'carteiras/acao_list.html', context)
     else:
         return render(request, 'carteiras/acao_buscar.html')
-
 def carteira(request):
     return render(request, 'carteiras/carteira.html')
-
+def entrada_add(request):
+    if request.method == 'POST':
+        form = ContaeForm(request.POST or None)
+        if form.is_valid():
+            entrada = form.save(commit=False)
+            entrada.user = request.user
+            entrada.save()
+            return redirect('carteira')
+    else:
+        form = ContaeForm()
+        return render(request, 'carteiras/entrada_add.html', {'form': form})
+def saida_add(request):
+    if request.method == 'POST':
+        form = ContasForm(request.POST or None)
+        if form.is_valid():
+            saida = form.save(commit=False)
+            saida.user = request.user
+            saida.save()
+            return redirect('carteira')
+    else:
+        form = ContasForm()
+        return render(request, 'carteiras/saida_add.html', {'form': form})
 def variavel_add(request):
     if request.method == 'POST':
         form = VariavelForm(request.POST or None)
-
         if form.is_valid():
             variavel = form.save(commit=False)
             variavel.user = request.user
@@ -71,7 +89,6 @@ def variavel_add(request):
     else:
         form = VariavelForm()
         return render(request, 'carteiras/variavel_add.html', {'form': form})
-
 def variavel_list(request):
     lista_v = Variavel.objects.all().order_by('-date_a').filter(user=request.user)
     paginator = Paginator(lista_v, 10)
@@ -91,10 +108,9 @@ def variavel_edit(request, id):
             variavel.save()
             return redirect('carteira')
         else:
-            return render(request, 'carteiras/variavel_edit.html', {'form':form, 'variavel':variavel})
-
+            return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel': variavel})
     else:
-        return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel':variavel})
+        return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel': variavel})
 def variavel_delete(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
     variavel.delete()
@@ -112,14 +128,12 @@ def fixa_add(request):
     else:
         form = FixaForm()
         return render(request, 'carteiras/fixa_add.html', {'form': form})
-
 def fixa_list(request):
     lista_f = Fixa.objects.all().order_by('-date_a').filter(user=request.user)
     paginator = Paginator(lista_f, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)
     return render(request, 'carteiras/fixa_list.html', {'lista': lista})
-
 def fixa_view(request, id):
     fixa = get_object_or_404(Fixa, pk=id)
     return render (request, 'carteiras/fixa_view.html', {'fixa': fixa})
@@ -134,14 +148,11 @@ def fixa_edit(request, id):
             fixa.save()
             return redirect('carteira')
         else:
-            return render(request, 'carteiras/fixa_edit.html', {'form':form, 'fixa':fixa})
-
+            return render(request, 'carteiras/fixa_edit.html', {'form': form, 'fixa': fixa})
     else:
         return render(request, 'carteiras/fixa_edit.html', {'form': form, 'fixa': fixa})
-
 def fixa_delete(request, id):
     fixa = get_object_or_404(Fixa, pk=id)
     fixa.delete()
     messages.info(request, 'Investimento deletado com sucesso!')
-
     return redirect('carteira')
