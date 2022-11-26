@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}Editando{% endblock %}
+
+{% block content %}
+<div class="offset-3 col-6 form-div">
+    <h1>Editando {{entrada.descricao}}</h1>
+    <form action="{% url 'entrada_edit' entrada.id %}" class="form-add" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{data_e|date:'%d-%m-%Y'}}
+
+        <input type="submit" class="btn btn-success" value="Editar">
+    </form>
+</div>
+{% endblock %}

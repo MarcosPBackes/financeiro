@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}Lista de contas{% endblock %}
+
+{% block content %}
+<div class="carteira_h1">
+<h1>Lista de contas</h1>
+<a href="{% url 'saida_add' %}"><button type="button" class="btn btn-outline-success">Adicionar</button></a>
+</div>
+  <ul class="carteira_list">
+        {% for saida in lista %}
+            <a href="/carteiras/saida_view/{{saida.id}}">
+            <li>
+                <div class="carteira_detalhe">
+                <h3>Descrição</h3>
+               <h5 class="carteira_detalhe_h5" >{{saida.descricao}}</h5>
+                </div>
+                <div class="carteira_detalhe">
+                <h3>Valor da conta</h3>
+                <h5 class="carteira_detalhe_h5" >{{saida.valor}}</h5>
+                </div>
+                <div class="carteira_detalhe">
+                <h3>Data de vencimento</h3>
+                <h5 class="carteira_detalhe_h5">{{saida.data_e}}</h5>
+                </div>
+            </li>
+            </a>
+        {% endfor %}
+  </ul>
+{% endblock %}

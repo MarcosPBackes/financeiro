@@ -67,6 +67,33 @@ def entrada_add(request):
     else:
         form = ContaeForm()
         return render(request, 'carteiras/entrada_add.html', {'form': form})
+def entrada_list(request):
+    lista_v = Entrada.objects.all().order_by('-data_a').filter(user=request.user)
+    paginator = Paginator(lista_v, 10)
+    page = request.GET.get('page')
+    lista = paginator.get_page(page)
+    return render(request, 'carteiras/entrada_list.html', {'lista': lista})
+def entrada_view(request, id):
+    entrada = get_object_or_404(Entrada, pk=id)
+    return render(request, 'carteiras/entrada_view.html', {'entrada': entrada})
+def entrada_edit(request, id):
+    entrada = get_object_or_404(Entrada, pk=id)
+    form = ContaeForm(instance=entrada)
+    if(request.method == 'POST'):
+        form = ContaeForm(request.POST, instance=entrada)
+        if(form.is_valid()):
+            entrada.save()
+            return redirect('carteira')
+        else:
+            return render(request, 'carteiras/entrada_edit.html', {'form': form, 'entrada': entrada})
+    else:
+        return render(request, 'carteiras/entrada_edit.html', {'form': form, 'entrada': entrada})
+def entrada_delete(request, id):
+    entrada = get_object_or_404(Entrada, pk=id)
+    entrada.delete()
+    messages.info(request, 'Deletado com sucesso!')
+    return redirect('carteira')
+
 def saida_add(request):
     if request.method == 'POST':
         form = ContasForm(request.POST or None)
@@ -78,6 +105,32 @@ def saida_add(request):
     else:
         form = ContasForm()
         return render(request, 'carteiras/saida_add.html', {'form': form})
+def saida_list(request):
+    lista_v = Saida.objects.all().order_by('-data_a').filter(user=request.user)
+    paginator = Paginator(lista_v, 10)
+    page = request.GET.get('page')
+    lista = paginator.get_page(page)
+    return render(request, 'carteiras/saida_list.html', {'lista': lista})
+def saida_view(request, id):
+    saida = get_object_or_404(Saida, pk=id)
+    return render(request, 'carteiras/saida_view.html', {'saida': saida})
+def saida_edit(request, id):
+    saida = get_object_or_404(Saida, pk=id)
+    form = ContasForm(instance=saida)
+    if(request.method == 'POST'):
+        form = ContasForm(request.POST, instance=saida)
+        if(form.is_valid()):
+            saida.save()
+            return redirect('carteira')
+        else:
+            return render(request, 'carteiras/saida_edit.html', {'form': form, 'saida': saida})
+    else:
+        return render(request, 'carteiras/saida_edit.html', {'form': form, 'saida': saida})
+def saida_delete(request, id):
+    saida = get_object_or_404(Saida, pk=id)
+    saida.delete()
+    messages.info(request, 'Deletado com sucesso!')
+    return redirect('carteira')
 def variavel_add(request):
     if request.method == 'POST':
         form = VariavelForm(request.POST or None)
@@ -97,7 +150,7 @@ def variavel_list(request):
     return render(request, 'carteiras/variavel_list.html', {'lista': lista})
 def variavel_view(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
-    return render (request, 'carteiras/variavel_view.html', {'variavel': variavel})
+    return render(request, 'carteiras/variavel_view.html', {'variavel': variavel})
 def variavel_edit(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
     form = VariavelForm(instance=variavel)

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}Lista de entradas{% endblock %}
+
+{% block content %}
+<div class="carteira_h1">
+<h1>Pagamentos recebidos</h1>
+<a href="{% url 'entrada_add' %}"><button type="button" class="btn btn-outline-success">Adicionar</button></a>
+</div>
+  <ul class="carteira_list">
+        {% for entrada in lista %}
+            <a href="/carteiras/entrada_view/{{entrada.id}}">
+            <li>
+                <div class="carteira_detalhe">
+                <h3>Descrição</h3>
+                <h5 class="carteira_detalhe_h5" >{{entrada.descricao}}</h5>
+                </div>
+                <div class="carteira_detalhe">
+                <h3>Valor recebido</h3>
+                <h5 class="carteira_detalhe_h5" >{{entrada.valor}}</h5>
+                </div>
+                <div class="carteira_detalhe">
+                <h3>Data de recebimento</h3>
+                <h5 class="carteira_detalhe_h5">{{entrada.data_e}}</h5>
+                </div>
+            </li>
+            </a>
+        {% endfor %}
+  </ul>
+{% endblock %}

@@ -58,7 +58,3 @@ class Saida(models.Model):
     valor = models.DecimalField(max_digits=11, decimal_places=2)
     data_a = models.DateField(auto_now=True)
     data_e = models.DateField(null=True, blank=True, verbose_name='Data de vencimento')
-
-
-
-
