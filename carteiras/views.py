@@ -12,6 +12,7 @@ from .models import Acao, Variavel, Fixa, Entrada, Saida
 
 import json
 import pandas as pd
+@login_required
 class Busca:
     def __int__(self, codigo):
         self.codigo = codigo
@@ -31,6 +32,7 @@ class Busca:
         data = json.loads(dts)
         return data, cpp
     #CPLE3.SA
+@login_required
 def buscar(request):
     search = request.GET.get('search')
     if search:
@@ -54,8 +56,10 @@ def buscar(request):
         return render(request, 'carteiras/acao_list.html', context)
     else:
         return render(request, 'carteiras/acao_buscar.html')
+@login_required
 def carteira(request):
     return render(request, 'carteiras/carteira.html')
+@login_required
 def entrada_add(request):
     if request.method == 'POST':
         form = ContaeForm(request.POST or None)
@@ -67,15 +71,18 @@ def entrada_add(request):
     else:
         form = ContaeForm()
         return render(request, 'carteiras/entrada_add.html', {'form': form})
+@login_required
 def entrada_list(request):
     lista_v = Entrada.objects.all().order_by('-data_a').filter(user=request.user)
     paginator = Paginator(lista_v, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)
     return render(request, 'carteiras/entrada_list.html', {'lista': lista})
+@login_required
 def entrada_view(request, id):
     entrada = get_object_or_404(Entrada, pk=id)
     return render(request, 'carteiras/entrada_view.html', {'entrada': entrada})
+@login_required
 def entrada_edit(request, id):
     entrada = get_object_or_404(Entrada, pk=id)
     form = ContaeForm(instance=entrada)
@@ -88,12 +95,13 @@ def entrada_edit(request, id):
             return render(request, 'carteiras/entrada_edit.html', {'form': form, 'entrada': entrada})
     else:
         return render(request, 'carteiras/entrada_edit.html', {'form': form, 'entrada': entrada})
+@login_required
 def entrada_delete(request, id):
     entrada = get_object_or_404(Entrada, pk=id)
     entrada.delete()
     messages.info(request, 'Deletado com sucesso!')
     return redirect('carteira')
-
+@login_required
 def saida_add(request):
     if request.method == 'POST':
         form = ContasForm(request.POST or None)
@@ -105,15 +113,18 @@ def saida_add(request):
     else:
         form = ContasForm()
         return render(request, 'carteiras/saida_add.html', {'form': form})
+@login_required
 def saida_list(request):
     lista_v = Saida.objects.all().order_by('-data_a').filter(user=request.user)
     paginator = Paginator(lista_v, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)
     return render(request, 'carteiras/saida_list.html', {'lista': lista})
+@login_required
 def saida_view(request, id):
     saida = get_object_or_404(Saida, pk=id)
     return render(request, 'carteiras/saida_view.html', {'saida': saida})
+@login_required
 def saida_edit(request, id):
     saida = get_object_or_404(Saida, pk=id)
     form = ContasForm(instance=saida)
@@ -126,11 +137,13 @@ def saida_edit(request, id):
             return render(request, 'carteiras/saida_edit.html', {'form': form, 'saida': saida})
     else:
         return render(request, 'carteiras/saida_edit.html', {'form': form, 'saida': saida})
+@login_required
 def saida_delete(request, id):
     saida = get_object_or_404(Saida, pk=id)
     saida.delete()
     messages.info(request, 'Deletado com sucesso!')
     return redirect('carteira')
+@login_required
 def variavel_add(request):
     if request.method == 'POST':
         form = VariavelForm(request.POST or None)
@@ -142,15 +155,18 @@ def variavel_add(request):
     else:
         form = VariavelForm()
         return render(request, 'carteiras/variavel_add.html', {'form': form})
+@login_required
 def variavel_list(request):
     lista_v = Variavel.objects.all().order_by('-date_a').filter(user=request.user)
     paginator = Paginator(lista_v, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)
     return render(request, 'carteiras/variavel_list.html', {'lista': lista})
+@login_required
 def variavel_view(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
     return render(request, 'carteiras/variavel_view.html', {'variavel': variavel})
+@login_required
 def variavel_edit(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
     form = VariavelForm(instance=variavel)
@@ -164,11 +180,13 @@ def variavel_edit(request, id):
             return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel': variavel})
     else:
         return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel': variavel})
+@login_required
 def variavel_delete(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
     variavel.delete()
     messages.info(request, 'Investimento deletado com sucesso!')
     return redirect('carteira')
+@login_required
 def fixa_add(request):
     if request.method == 'POST':
         form = FixaForm(request.POST or None)
@@ -181,16 +199,18 @@ def fixa_add(request):
     else:
         form = FixaForm()
         return render(request, 'carteiras/fixa_add.html', {'form': form})
+@login_required
 def fixa_list(request):
     lista_f = Fixa.objects.all().order_by('-date_a').filter(user=request.user)
     paginator = Paginator(lista_f, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)
     return render(request, 'carteiras/fixa_list.html', {'lista': lista})
+@login_required
 def fixa_view(request, id):
     fixa = get_object_or_404(Fixa, pk=id)
     return render (request, 'carteiras/fixa_view.html', {'fixa': fixa})
-
+@login_required
 def fixa_edit(request, id):
     fixa = get_object_or_404(Fixa, pk=id)
     form = FixaForm(instance=fixa)
@@ -204,6 +224,7 @@ def fixa_edit(request, id):
             return render(request, 'carteiras/fixa_edit.html', {'form': form, 'fixa': fixa})
     else:
         return render(request, 'carteiras/fixa_edit.html', {'form': form, 'fixa': fixa})
+@login_required
 def fixa_delete(request, id):
     fixa = get_object_or_404(Fixa, pk=id)
     fixa.delete()
