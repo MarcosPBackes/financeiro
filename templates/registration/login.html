@@ -1,0 +1,14 @@
+{% extends  'index.html' %}
+
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+<div class="offset-5 col-3 form-div" style="margin-bottom: ;padding-bottom: 10px;">
+<h2>Log In</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+</div>
+{% endblock %}
