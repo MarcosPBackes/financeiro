@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="offset-5 col-3 form-div" style="padding-bottom: 10px;color: var(--cor6);">
+<h2>Sign up</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Sign Up</button>
+</form>
+</div>
+{% endblock %}
