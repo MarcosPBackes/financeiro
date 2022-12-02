@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'sobre',
     'carteiras',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
