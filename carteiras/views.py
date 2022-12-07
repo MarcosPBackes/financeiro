@@ -12,7 +12,7 @@ from .models import Acao, Variavel, Fixa, Entrada, Saida
 
 import json
 import pandas as pd
-@login_required
+
 class Busca:
     def __int__(self, codigo):
         self.codigo = codigo
@@ -157,7 +157,7 @@ def variavel_add(request):
         return render(request, 'carteiras/variavel_add.html', {'form': form})
 @login_required
 def variavel_list(request):
-    lista_v = Variavel.objects.all().order_by('-date_a').filter(user=request.user)
+    lista_v = Variavel.objects.all().order_by('-data_a').filter(user=request.user)
     paginator = Paginator(lista_v, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)
@@ -201,7 +201,7 @@ def fixa_add(request):
         return render(request, 'carteiras/fixa_add.html', {'form': form})
 @login_required
 def fixa_list(request):
-    lista_f = Fixa.objects.all().order_by('-date_a').filter(user=request.user)
+    lista_f = Fixa.objects.all().order_by('-data_a').filter(user=request.user)
     paginator = Paginator(lista_f, 10)
     page = request.GET.get('page')
     lista = paginator.get_page(page)

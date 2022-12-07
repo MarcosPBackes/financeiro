@@ -36,9 +36,9 @@ class ContasForm(forms.ModelForm):
 class VariavelForm(forms.ModelForm):
     class Meta:
         model = Variavel
-        fields = ('acao', 'data_compra', 'quantidade', 'valor_pago')
+        fields = ('acao', 'data_e', 'quantidade', 'valor_pago')
         widgets = {
-            'data_compra': forms.DateInput(
+            'data_e': forms.DateInput(
                 format=('%Y-%m-%d'),
                 attrs={'type': 'date'}
             ),
@@ -50,12 +50,12 @@ class VariavelForm(forms.ModelForm):
 class FixaForm(forms.ModelForm):
     class Meta:
         model = Fixa
-        fields = ('valor_inv', 'rendimento', 'tempo', 'data_inv', 'tipo', 'descricao_tipo')
+        fields = ('valor_inv', 'rendimento', 'tempo', 'data_e', 'tipo', 'descricao_tipo')
         widgets = {
             'valor_inv': forms.NumberInput(
                 attrs={'step': 0.01}
             ),
-            'data_inv': forms.DateInput(
+            'data_e': forms.DateInput(
                 format=('%Y-%m-%d'),
                 attrs={'type': 'date'}
             )

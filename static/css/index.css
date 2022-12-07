@@ -300,3 +300,20 @@ table {
 .fixa_valor {
     margin-left: 3vh;
 }
+/* dashboard */
+
+.informacoes_basicas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #181C24;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to right top, #bd31c4, #8e3bb0, #643b97, #413579, #282c59);
+    border-image-slice: 1;
+}
+.icone{
+    color: #C040B9;
+    width: 40px;
+
+
+}
