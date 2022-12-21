@@ -8,7 +8,7 @@
     <form action="{% url 'variavel_edit' variavel.id %}" class="form-add" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        {{data_compra|date:'%d-%m-%Y'}}
+        {{data_e|date:'%d-%m-%Y'}}
 
         <input type="submit" class="btn btn-success" value="Editar Ordem">
     </form>

@@ -70,3 +70,43 @@ def relatorio_funcionario(request):
     x = list(zip(*x))
 
     return JsonResponse({'labels': x[0][:3], 'data': x[1][:3]})
+
+def minha_dashboard(request):
+    entrada = Entrada.objects.all().filter(user=request.user)
+    saida = Saida.objects.all().filter(user=request.user)
+    fixa = Fixa.objects.all().filter(user=request.user)
+    variavel = Variavel.objects.all().filter(user=request.user)
+    meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+    data = []
+    labels = []
+    cont = 0
+    mes = datetime.now().month + 1
+    ano = datetime.now().year
+    for i in range(12):
+        mes -= 1
+        if mes == 0:
+            mes = 12
+            ano -= 1
+
+        list_e = sum([i.valor for i in entrada if i.data_e.month == mes and i.data_e.year == ano])
+        #list_s = sum([i.valor for i in saida if i.data_e.month == mes and i.data_e.year == ano])
+        #list_f = sum([i.valor for i in fixa if i.data_e.month == mes and i.data_e.year == ano])
+        #list_v = sum([i.valor for i in variavel if i.data_e.month == mes and i.data_e.year == ano])
+        labels.append(meses[mes - 1])
+        data.append(list_e)
+        cont += 1
+
+
+        #data.clear()
+        total_anual = {
+
+        }
+
+    json_entrada = {'data': data[::-1], 'labels': labels[::-1]}
+    #print(json_entrada)
+
+    #print(list_e)
+
+    print(data)
+    print(sum(data))
+    return JsonResponse(json_entrada)

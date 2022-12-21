@@ -10,8 +10,8 @@
     <form class="form-add" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        {{data_inv|date:'%d-%m-%Y'}}
-        {{valor_inv}}
+        {{data_e|date:'%d-%m-%Y'}}
+        {{valor}}
         <input type="submit" class="btn btn-success" value="Salvar">
     </form>
     </div>

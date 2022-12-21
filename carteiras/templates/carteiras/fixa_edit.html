@@ -8,7 +8,7 @@
     <form action="{% url 'fixa_edit' fixa.id %}" class="form-add" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        {{data_inv|date:'%d-%m-%Y'}}
+        {{data_e|date:'%d-%m-%Y'}}
 
         <input type="submit" class="btn btn-success" value="Editar Ordem">
     </form>

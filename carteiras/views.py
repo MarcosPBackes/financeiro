@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 import yfinance as yf
-import investpy as inv
+#import investpy as inv
 
 from .forms import VariavelForm, FixaForm, ContaeForm, ContasForm
 from .models import Acao, Variavel, Fixa, Entrada, Saida
