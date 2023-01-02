@@ -15,7 +15,8 @@ class MinhaDash():
         js = []
         for obj in objetos:
             entrada = obj.objects.all().filter(user=request.user)
-            meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+            meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul',
+                     'ago', 'set', 'out', 'nov', 'dez']
             data = []
             labels = []
             cont = 0
@@ -30,26 +31,22 @@ class MinhaDash():
                 labels.append(meses[mes - 1])
                 data.append(lista)
                 cont += 1
-            #json_entrada = {'data': data[::-1], 'labels': labels[::-1]}
             js.append(data)
-        data_f = pd.DataFrame(js, columns=['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'])
+        data_f = pd.DataFrame(js, columns=['jan', 'fev', 'mar', 'abr', 'mai',
+                                           'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'])
         data_f.index = ['fixa', 'variavel', 'entrada', 'saida']
         json_r = data_f.to_json()
-        #print(json_r)
         return (json_r)
 def home_dash(request):
     dados = MinhaDash.get(request)
-    m = json.loads(dados)
-    print(m)
-    return render(request, 'dashboard/carteira_dashboard.html')
-def renda_variavel():
-    pass
-def renda_fixa():
-    pass
-def tipos_investimento():
-    pass
-def recebimentos():
-    pass
-def pagamentos():
-    pass
-
+    df = pd.read_json(dados)
+    df = df.T
+    sum_inv = sum(df['fixa']) + sum(df['variavel'])
+    sum_entrada = sum(df['entrada'])
+    sum_saida = sum(df['saida'])
+    context = {
+        'investimento': sum_inv,
+        'entrada': sum_entrada,
+        'saida': sum_saida
+    }
+    return render(request, 'dashboard/carteira_dashboard.html', context)

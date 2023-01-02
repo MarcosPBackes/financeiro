@@ -21,7 +21,8 @@ class Busca:
         res = yf.Ticker(cod)
         historico = res.history(period='2d')
         historico = historico.reset_index()
-        historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock']
+        historico.columns = ['date', 'open', 'high', 'low', 'close', 'volume',
+                             'dividends', 'stock']
         historico['date'] = pd.to_datetime(historico['date'], errors='coerce')
         historico['date'] = historico['date'].dt.strftime('%m-%d-%Y')
         dts = historico.reset_index().to_json(orient='records', date_format='iso')
@@ -92,9 +93,11 @@ def entrada_edit(request, id):
             entrada.save()
             return redirect('carteira')
         else:
-            return render(request, 'carteiras/entrada_edit.html', {'form': form, 'entrada': entrada})
+            return render(request, 'carteiras/entrada_edit.html',
+                          {'form': form, 'entrada': entrada})
     else:
-        return render(request, 'carteiras/entrada_edit.html', {'form': form, 'entrada': entrada})
+        return render(request, 'carteiras/entrada_edit.html',
+                      {'form': form, 'entrada': entrada})
 @login_required
 def entrada_delete(request, id):
     entrada = get_object_or_404(Entrada, pk=id)
@@ -134,9 +137,11 @@ def saida_edit(request, id):
             saida.save()
             return redirect('carteira')
         else:
-            return render(request, 'carteiras/saida_edit.html', {'form': form, 'saida': saida})
+            return render(request, 'carteiras/saida_edit.html',
+                          {'form': form, 'saida': saida})
     else:
-        return render(request, 'carteiras/saida_edit.html', {'form': form, 'saida': saida})
+        return render(request, 'carteiras/saida_edit.html',
+                      {'form': form, 'saida': saida})
 @login_required
 def saida_delete(request, id):
     saida = get_object_or_404(Saida, pk=id)
@@ -165,7 +170,8 @@ def variavel_list(request):
 @login_required
 def variavel_view(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
-    return render(request, 'carteiras/variavel_view.html', {'variavel': variavel})
+    return render(request, 'carteiras/variavel_view.html',
+                  {'variavel': variavel})
 @login_required
 def variavel_edit(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
@@ -177,9 +183,11 @@ def variavel_edit(request, id):
             variavel.save()
             return redirect('carteira')
         else:
-            return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel': variavel})
+            return render(request, 'carteiras/variavel_edit.html',
+                          {'form': form, 'variavel': variavel})
     else:
-        return render(request, 'carteiras/variavel_edit.html', {'form': form, 'variavel': variavel})
+        return render(request, 'carteiras/variavel_edit.html',
+                      {'form': form, 'variavel': variavel})
 @login_required
 def variavel_delete(request, id):
     variavel = get_object_or_404(Variavel, pk=id)
@@ -221,9 +229,11 @@ def fixa_edit(request, id):
             fixa.save()
             return redirect('carteira')
         else:
-            return render(request, 'carteiras/fixa_edit.html', {'form': form, 'fixa': fixa})
+            return render(request, 'carteiras/fixa_edit.html',
+                          {'form': form, 'fixa': fixa})
     else:
-        return render(request, 'carteiras/fixa_edit.html', {'form': form, 'fixa': fixa})
+        return render(request, 'carteiras/fixa_edit.html',
+                      {'form': form, 'fixa': fixa})
 @login_required
 def fixa_delete(request, id):
     fixa = get_object_or_404(Fixa, pk=id)

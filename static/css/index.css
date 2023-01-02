@@ -304,6 +304,7 @@ table {
 
 .informacoes_basicas{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #181C24;
@@ -314,6 +315,4 @@ table {
 .icone{
     color: #C040B9;
     width: 40px;
-
-
 }
