@@ -1,0 +1,48 @@
+.soma_anual_dash{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5em;
+}
+h1.dash_ano{
+    text-align: center;
+    margin-bottom: 1em;
+}
+.informacoes_basicas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #181C24;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to right top, #bd31c4, #8e3bb0, #643b97, #413579, #282c59);
+    border-image-slice: 1;
+}
+.icone{
+    color: #C040B9;
+    width: 40px;
+}
+
+.accordion{
+    max-width: 80%;
+    margin: auto;
+}
+
+.accordion-item{
+    color: var(--cor6);
+    background-color: var(--cor3);
+    border: 3px solid var(--cor5);
+}
+
+.accordion-button{
+    color: var(--cor4);
+    background-color: var(--cor2);
+}
+
+.accordion-button:not(.collapsed){
+    color: var(--cor4);
+    background-color: var(--cor2);
+}
+
+.accordion-collapse{
+    color: var(--cor6_;
+}

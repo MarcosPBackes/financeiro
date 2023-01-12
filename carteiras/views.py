@@ -14,6 +14,8 @@ import json
 import pandas as pd
 
 class Busca:
+
+
     def __int__(self, codigo):
         self.codigo = codigo
     def acao(self):
