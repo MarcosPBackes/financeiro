@@ -34,7 +34,7 @@ class MinhaDash():
                 cont += 1
             js.append(data)
         for obj in objetos:
-            cinco_ultimos = obj.objects.all().order_by('-id')[:5]
+            cinco_ultimos = obj.objects.all().order_by('-id')[:3]
             ultimos.append(cinco_ultimos)
             #print(cinco_ultimos)
         data_f = pd.DataFrame(js, columns=['jan', 'fev', 'mar', 'abr', 'mai',

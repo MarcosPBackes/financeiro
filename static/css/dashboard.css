@@ -1,7 +1,7 @@
 .soma_anual_dash{
     display: flex;
     justify-content: center;
-    margin-bottom: 5em;
+    margin-bottom: 3em;
 }
 h1.dash_ano{
     text-align: center;
@@ -44,5 +44,21 @@ h1.dash_ano{
 }
 
 .accordion-collapse{
-    color: var(--cor6_;
+    color: var(--cor6);
+}
+
+.accordion-body{
+    display: flex;
+    padding: 0;
+}
+
+.card{
+    border: none;
+    margin: 3px;
+}
+
+.list-group-flush{
+    color: var(--cor0);
+    background-color: var(--cor5);
+    border-width: 0 0 1px;
 }

@@ -59,7 +59,15 @@
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            {% for e in ult_entrada %}
+            <div class="card" style="width: 18rem;">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Descrição: {{e.descricao}}</li>
+                <li class="list-group-item">Valor: {{e.valor}}</li>
+                <li class="list-group-item">Data: {{e.data_a}}</li>
+              </ul>
+            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -71,7 +79,15 @@
         </h2>
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
           <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            {% for s in ult_saida %}
+            <div class="card" style="width: 18rem;">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Descrição: {{s.descricao}}</li>
+                <li class="list-group-item">Valor: {{s.valor}}</li>
+                <li class="list-group-item">Data: {{s.data_a}}</li>
+              </ul>
+            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -83,19 +99,35 @@
         </h2>
         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
           <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            {% for f in ult_fixa %}
+            <div class="card" style="width: 18rem;">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Descrição: {{f.descricao}}</li>
+                <li class="list-group-item">Valor: {{f.valor}}</li>
+                <li class="list-group-item">Data: {{f.data_a}}</li>
+              </ul>
+            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
             Últimos investimentos em renda variavel
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
           <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            {% for v in ult_variavel %}
+            <div class="card" style="width: 18rem;">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Descrição: {{v.acao}}</li>
+                <li class="list-group-item">Valor: {{v.valor}}</li>
+                <li class="list-group-item">Data: {{v.data_a}}</li>
+              </ul>
+            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
